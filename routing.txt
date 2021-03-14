@@ -1,0 +1,76 @@
+Iskolai pontok
+-index.html
+-class.html
+-student.html
+-form_student.html
+-form_points.html
+
+middlewares:
+
+renderMW
+
+middlewares/auth
+    checkPassMW.js
+    authMW.js
+
+middlewares/student
+    getStudentsMW.js
+    getStudentMW.js
+    saveStudentMW.js
+    delStudentMW.js
+
+middlewares/points
+    getPointsMW.js
+    getPointMW.js
+    savePointMW.js
+    delPointMW.js
+
+
+GET, POST /
+    checkPassMW
+    renderMW(index.html)
+
+GET /students/
+    authMW
+    getStudentsMW
+    renderMW(class.html)
+
+GET, POST /students/new/
+    authMW
+    saveStudentMW
+    renderMW(form_student.html (new))
+
+GET, POST /students/edit/:studentid/
+    authMW
+    getStudentMW
+    saveStudentMW
+    renderMW(form_student.html)
+
+GET /students/del/:studentid/
+    authMW
+    getStudentMW
+    delStudentMW
+
+GET /points/:studentsid/
+    authMW
+    getStudentMW
+    getPointsMW
+    renderMW(student.html)
+
+GET, POST /points/:studentid/new/
+    authMW
+    getStudentMW
+    savePointMW
+    renderMW(form_points.html)
+
+GET, POST /points/:studentid/edit/:pointid/
+    authMW
+    getStudentMW
+    getPointMW 
+    savePointMW
+    renderMW(form_points.html)
+
+GET /points/:studentid/del/:pointid/
+    authMW
+    getPointMW
+    delPointMW

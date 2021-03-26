@@ -7,6 +7,10 @@
 
 module.exports = function(objectrepository) {
     return function(req, res, next)  {
+        if(req.method == 'GET') 
         next()
+        else {
+            res.redirect('/points/' + res.locals.student._id + '/')
+        }
     }
 }

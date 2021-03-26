@@ -1,0 +1,61 @@
+<%- include('header',  {navbar: 'Class', link: '/students/'}) -%> 
+        <div class="container">
+            <div class="col-12 card p-5 shadow">
+                <form class="row g-3 " method="POST" <% if (typeof student === 'undefined') { %>
+                 action="/students/new/"
+                <% } else { %>
+                  action="/students/edit/<%= student._id %>/"
+                <% } %> >
+                    <div class="col-md-6">
+                      <label for="firstname" class="form-label">First Name</label>
+                      <input type="text" class="form-control" id="fistname" name="firstname" placeholder="Valaki" value="<%= (typeof student === 'undefined') ? '' : student.firstname%>">
+                    </div>
+                    <div class="col-md-6">
+                      <label for="lastname" class="form-label">Last Name</label>
+                      <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Valamilyen" value="<%= (typeof student === 'undefined') ? '' : student.lastname%>">
+                    </div>
+                    <div class="col-12">
+                      <label for="street" class="form-label">Address</label>
+                      <input type="text" class="form-control" id="street" name="street" placeholder="Fo u. 12" value="<%= (typeof student === 'undefined') ? '' : student.street%>">
+                    </div>
+                    <div class="col-md-8">
+                      <label for="city" class="form-label">City</label>
+                      <input type="text" class="form-control" id="city" name="city" placeholder="Budapest" value="<%= (typeof student === 'undefined') ? '' : student.city%>">
+                    </div>
+                    <div class="col-md-2 offset-md-2">
+                      <label for="zip" class="form-label">Zip</label>
+                      <input type="text" class="form-control" id="zip" name="zip" placeholder="1000" value="<%= (typeof student === 'undefined') ? '' : student.zip%>">
+                    </div>
+                    <div class="col-12">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="valami@valami.com" value="<%= (typeof student === 'undefined') ? '' : student.email%>">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="studentid" class="form-label">Student ID</label>
+                        <input type="text" class="form-control" id="studentid" name="studentid" placeholder="123ABC" value="<%= (typeof student === 'undefined') ? '' : student.studentid%>">
+                    </div>
+                    <div class="col-md-4 offset-md-4">
+                        <label for="class" class="form-label">Class</label>
+                        <select id="class" class="form-select" name="class" >
+                          <%
+                          var options = [ "9/A", "9/B", "10/A", "10/B", "11/A", "11/B","12/A", "12/B"]
+                          for ( var i = 0; i < options.length; i++ )
+                          {
+                              let selected
+                              if(typeof student !== 'undefined')
+                                selected = ( student.class == options[i] ) ? "selected" : ""
+                              else
+                                selected = ""
+                              %><option value="<%=options[ i ] %>" <%=selected %>><%=options[i] %></option><%
+                          }
+                          %>
+                        </select>
+                    </div>
+                    <div class="col-12 text-center pt-3">
+                      <input type="submit" class="btn btn-primary" value="Submit"/>
+                      <a href="/students/" class="btn btn-danger">Cancel</a>
+                    </div>
+                  </form>
+            </div>
+        </div>
+  <%- include('footer') -%> 

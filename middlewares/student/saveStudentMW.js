@@ -7,6 +7,11 @@
 
 module.exports = function(objectrepository) {
     return function(req, res, next)  {
-        next()
+        if(req.method == 'GET') 
+            next()
+        else {
+            res.redirect('/students/')
+        } 
+            
     }
 }

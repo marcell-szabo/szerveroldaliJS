@@ -1,0 +1,45 @@
+<%- include('header', {navbar: 'Class', link: '/points/' + student._id + '/'}) -%> 
+        <div class="container">
+            <div class="col-12 card p-5 shadow">
+                <form class="row g-3 " method="POST" <% if (typeof studentpoint === 'undefined') { %>
+                  action="/points/<%= student._id %>/new/ "
+                 <% } else { %>
+                   action="/points/<%= student._id %>/edit/<%= studentpoint._id %> "
+                 <% } %> >
+                    <div class="col-md-12">
+                      <label for="task" class="form-label">Task</label>
+                      <input type="text" class="form-control" id="task" name="task" placeholder="Test" value="<%= (typeof studentpoint === 'undefined') ? '' : studentpoint.task%>">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="class" class="form-label">Point</label>
+                        <select id="class" class="form-select" name="class">
+                        <%
+                        var options = [ 1,2,3,4,5]
+                        for ( var i = 0; i < options.length; i++ )
+                        {
+                            let selected
+                            if(typeof studentpoint !== 'undefined')
+                                selected = ( studentpoint.points == options[i] ) ? "selected" : ""
+                            else
+                                selected = ''
+                            %><option value="<%=options[ i ] %>" <%=selected %>><%=options[i] %></option><%
+                        }
+                        %>
+                      </select>
+                    </div>
+                    <div class="col-md-4 offset-md-4">
+                      <label for="date" class="form-label">Date</label>
+                      <input type="date" class="form-control" id="date" name="date" value="<%= (typeof studentpoint === 'undefined') ? '' : studentpoint.date%>">
+                    </div>
+                    <div class="col-12">
+                      <label for="description" class="form-label">Description</label>
+                      <input type="text" class="form-control" id="description" name="description" placeholder="Human Biology Exam" value="<%= (typeof studentpoint === 'undefined') ? '' : studentpoint.description%>">
+                    </div>
+                    <div class="col-12 text-center pt-3">
+                      <input type="submit" class="btn btn-primary" value="Submit"/>
+                      <a href="/points/<%= student._id %>/ " class="btn btn-danger">Cancel</a>
+                    </div>
+                  </form>
+            </div>
+        </div>
+  <%- include('footer') -%> 

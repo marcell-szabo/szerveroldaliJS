@@ -13,44 +13,53 @@ const delStudentMW = require('../middlewares/student/getStudentMW')
 module.exports = function(app) {
     const objecRepository = {}
 
-    app.use('/',
-            checkPassMW(objecRepository), 
-            renderMW(objecRepository, 'index'))
-    app.get('/students/',
-            authMW(objecRepository),
-            getStudentsMW(objecRepository),
-            renderMW(objecRepository, 'class'))
+    
     app.use('/students/new/',
-            authMW(objecRepository),
-            saveStudentMW(objecRepository),
-            renderMW(objecRepository, 'form_student'))
+        authMW(objecRepository),
+        saveStudentMW(objecRepository),
+        renderMW(objecRepository, 'form_student'))
+        
     app.use('/students/edit/:studentid/',
-            authMW(objecRepository),
-            getStudentMW(objecRepository),
-            saveStudentMW(objecRepository),
-            renderMW(objecRepository, 'form_student'))
+        authMW(objecRepository),
+        getStudentMW(objecRepository),
+        saveStudentMW(objecRepository),
+        renderMW(objecRepository, 'form_student'))
+
     app.get('/students/del/:studentid/',
-            authMW(objecRepository),
-            getStudentMW(objecRepository),
-            delStudentMW(objecRepository))
+        authMW(objecRepository),
+        getStudentMW(objecRepository),
+        delStudentMW(objecRepository))
+        
+    app.get('/students/',
+        authMW(objecRepository),
+        getStudentsMW(objecRepository),
+        renderMW(objecRepository, 'class'))
+
     app.get('/points/:studentid/',
-            authMW(objecRepository),
-            getStudentMW(objecRepository),
-            getPointsMW(objecRepository),
-            renderMW(objecRepository, 'student'))
+        authMW(objecRepository),
+        getStudentMW(objecRepository),
+        getPointsMW(objecRepository),
+        renderMW(objecRepository, 'student'))
+
     app.use('/points/:studentid/new/',
-            authMW(objecRepository),
-            getStudentMW(objecRepository),
-            savePointMW(objecRepository),
-            renderMW(objecRepository, 'form_points'))
+        authMW(objecRepository),
+        getStudentMW(objecRepository),
+        savePointMW(objecRepository),
+        renderMW(objecRepository, 'form_points'))
+
     app.use('/points/:studentid/edit/:pointid/',
-            authMW(objecRepository),
-            getStudentMW(objecRepository),
-            getPointMW(objecRepository),
-            savePointMW(objecRepository),
-            renderMW(objecRepository, 'form_points'))
+        authMW(objecRepository),
+        getStudentMW(objecRepository),
+        getPointMW(objecRepository),
+        savePointMW(objecRepository),
+        renderMW(objecRepository, 'form_points'))
+        
     app.get('/points/:studentid/del/:pointid/',
-            authMW(objecRepository),
-            getPointMW(objecRepository),
-            delPointMW(objecRepository))
+        authMW(objecRepository),
+        getPointMW(objecRepository),
+        delPointMW(objecRepository))
+
+    app.use('/',
+        checkPassMW(objecRepository), 
+        renderMW(objecRepository, 'index'))
 }

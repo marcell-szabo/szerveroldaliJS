@@ -1,0 +1,40 @@
+<%- include('header', {navbar: 'Class', link: '/students/'}) -%> 
+        <div class="container">
+            <div class="row">   
+                <div class="col-12 card p-5 shadow">
+                    <h1 class="card-title"><%= student.lastname + " " + student.firstname %> </h1>
+                    <div class="card-body p-0 pt-3 mt-2">
+                        <div class="d-inline-flex bd-highlight me-lg-5"><span>Student ID:</span><span class="space"><%= student.studentid %> </span></div>
+                        <div class="d-inline-flex bd-highlight"><span>Class:</span><span class="space"><%= student.class %> </span></div>
+                    </div>     
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 card mt-3 tablefixhead table-responsive shadow">
+                    <table class="table">
+                        <thead>
+                            <tr>    
+                                <th scope="col">Task</th>
+                                <th scope="col">Point</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Description</th>
+                                <th scope="col">&nbsp;</th>
+                            </tr>
+                        </thead>
+                        <% points.forEach(function(onePoint){ %> 
+                            <tr>
+                                <td ><%= onePoint.task %> </td>
+                                <td ><%= onePoint.points %> </td>
+                                <td ><%= onePoint.date %> </td>
+                                <td><%= onePoint.description %> </td>
+                                <td class="td-narrow"><a class="modify" href="/points/<%= student._id %>/edit/<%= onePoint._id %>/  "><i class="bi bi-pen-fill"></i></a><a class="remove"  href=""><i class="bi bi-dash-circle-fill"></i></a> </td>
+                            </tr>
+                        <% }) %>
+                        </table>
+                </div>
+            </div>
+            <div class="col-12 text-center mt-4">
+                <a class="add-size" href="/points/<%= student._id %>/new/ "><i class="bi bi-plus-square-fill"></i></a>
+            </div>
+        </div>
+<%- include('footer') -%> 

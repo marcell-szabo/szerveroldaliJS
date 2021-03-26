@@ -4,6 +4,10 @@
 
 module.exports = function(objectrepository) {
     return function(req, res, next)  {
-        next()
+        if(typeof req.body.password == 'undefined') {
+            next()
+        } else{
+            res.redirect('/students/')
+        }
     }
 }

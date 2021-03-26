@@ -1,7 +1,11 @@
-var express = require("express")
+var express = require('express')
 var app = express()
+app.set('view engine', 'ejs')
 
-app.use(express.static("static"))
+app.use(express.urlencoded({ extended:false}))
+app.use(express.json())
+
+app.use(express.static(__dirname + '/static'))
 
 require('./route/routing.js')(app)
 

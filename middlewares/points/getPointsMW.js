@@ -1,26 +1,22 @@
 /**
  * Load all points for a student from database, saves result to res.locals.points
  */
+ const requireOption = require('../requireOption')
 
 
 module.exports = function(objectrepository) {
+    const PointModel = requireOption(objectrepository, 'PointModel')
+
     return function(req, res, next)  {
-        res.locals.points = [
-            {
-                _id: 1,
-                task: "Test",
-                points: 5,
-                date: "1/1/2021",
-                description: "Human Biology Exam"
-            },
-            {
-                _id: 2,
-                task: "Homework",
-                points: 3,
-                date: "5/3/2021",
-                description: "Plants Presentation"
-            },
-        ]
-        next()
+        if(typeof res.locals.student === 'undefined') 
+            return next()
+        
+        PointModel.find({_gradeof: res.locals.student._id}, (err, points) => {
+            if(err)
+                return next(err)
+
+            res.locals.studentpoints = points
+            return next()
+        })
     }
 }

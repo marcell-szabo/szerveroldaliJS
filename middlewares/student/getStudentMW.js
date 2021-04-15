@@ -1,21 +1,18 @@
 /**
  * Load a student from DB. The result is stored in res.locals.student
  */
+const requireOption = require('../requireOption')
 
 module.exports = function(objectrepository) {
+    const StudentModel = requireOption(objectrepository, 'StudentModel')
+
     return function(req, res, next)  {
-        res.locals.student = {
-                _id: 1,
-                firstname: 'Béla',
-                lastname: 'Minta',
-                studentid: 123456,
-                street: 'Fo u 45',
-                city: 'Budapet',
-                zip: 1234,
-                email: 'mintabela@gmail.com',
-                class: '9/A',
-                points: 100,
+        StudentModel.findOne({_id: req.params.studentid}, (err, student) => {
+            if(err || !student) {
+                return next(err)
             }
-        next()
+            res.locals.student = student
+            return next()
+        })
     }
 }

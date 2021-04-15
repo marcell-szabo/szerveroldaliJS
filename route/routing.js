@@ -8,10 +8,15 @@ const delPointMW = require('../middlewares/points/delPointMW')
 const getStudentsMW = require('../middlewares/student/getStudentsMW')
 const getStudentMW = require('../middlewares/student/getStudentMW')
 const saveStudentMW = require('../middlewares/student/saveStudentMW')
-const delStudentMW = require('../middlewares/student/getStudentMW')
+const delStudentMW = require('../middlewares/student/delStudentMW')
 
+const StudentModel = require('../models/student')
+const PointModel = require('../models/point')
 module.exports = function(app) {
-    const objecRepository = {}
+    const objecRepository = {
+        StudentModel: StudentModel,
+        PointModel: PointModel
+    }
 
     
     app.use('/students/new/',
@@ -56,6 +61,7 @@ module.exports = function(app) {
         
     app.get('/points/:studentid/del/:pointid/',
         authMW(objecRepository),
+        getStudentMW(objecRepository),
         getPointMW(objecRepository),
         delPointMW(objecRepository))
 

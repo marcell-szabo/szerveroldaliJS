@@ -8,31 +8,43 @@
 
 module.exports = function(objectrepository) {
     const PointModel = requireOption(objectrepository, 'PointModel')
+    const StudentModel = requireOption(objectrepository, 'StudentModel')
 
     return function(req, res, next)  {
-        if(req.method == 'GET' ||
-            (req.body.task == '') ||
-            (req.body.point == '') ||
-            (req.body.date == '') ||
-            (req.body.description == '')) 
+        if(req.method == 'GET' ) 
             return next()
-    
-        if (typeof res.locals.studentpoint === 'undefined') 
+
+        if (typeof res.locals.studentpoint === 'undefined') {
             res.locals.studentpoint = new PointModel()
-    
+            var isNew = true
+        } else 
+            var actualpoint = res.locals.studentpoint.points
+
         res.locals.studentpoint.task = req.body.task
         res.locals.studentpoint.points = req.body.point
-        console.log(req.body.date)
-        //TODO: date fix
         res.locals.studentpoint.date = req.body.date
         res.locals.studentpoint.description = req.body.description
         res.locals.studentpoint._gradeof = res.locals.student._id
 
+        //validation
+        if(req.body.task == '' ||
+            req.body.point == '' ||
+            req.body.date == ''  ||
+            req.body.description == '')
+            return next()
+        
         res.locals.studentpoint.save((err) => {
             if (err) {
                 return next(err)
             }
-            res.redirect('/points/' + res.locals.student._id + '/')
+            
+            //updates total points for student in database
+            var updatevalue = isNew ? res.locals.student.pointssum + res.locals.studentpoint.points : res.locals.student.pointssum - actualpoint + res.locals.studentpoint.points
+            StudentModel.updateOne({_id: res.locals.student._id}, {pointssum: updatevalue}, (err, updateRes) => {
+                if(err)
+                    return next(err)
+                return res.redirect('/points/' + res.locals.student._id + '/')
+            })
         })      
     }
 }

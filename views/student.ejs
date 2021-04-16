@@ -4,7 +4,7 @@
                 <div class="col-12 card p-5 shadow">
                     <h1 class="card-title"><%= student.lastname + " " + student.firstname %> </h1>
                     <div class="card-body p-0 pt-3 mt-2">
-                        <div class="d-inline-flex bd-highlight me-lg-5"><span>Student ID:</span><span class="space"><%= student.studentid %> </span></div>
+                        <div class="d-inline-flex bd-highlight me-5"><span>Student ID:</span><span class="space"><%= student.studentid %> </span></div>
                         <div class="d-inline-flex bd-highlight"><span>Class:</span><span class="space"><%= student.class %> </span></div>
                     </div>     
                 </div>
@@ -25,7 +25,7 @@
                             <tr>
                                 <td ><%= onePoint.task %> </td>
                                 <td ><%= onePoint.points %> </td>
-                                <td ><%= onePoint.date %> </td>
+                                <td ><%= onePoint.date.toDateString() %> </td>
                                 <td><%= onePoint.description %> </td>
                                 <td class="td-narrow"><a class="modify" href="/points/<%= student._id %>/edit/<%= onePoint._id %>/  "><i class="bi bi-pen-fill"></i></a><a class="remove"  href="/points/<%= student._id %>/del/<%= onePoint._id %>/"><i class="bi bi-dash-circle-fill"></i></a> </td>
                             </tr>

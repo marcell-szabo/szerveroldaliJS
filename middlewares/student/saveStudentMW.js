@@ -9,16 +9,12 @@ module.exports = function(objectrepository) {
     const StudentModel = requireOption(objectrepository, 'StudentModel')
 
     return function(req, res, next)  {
-        if(req.method == 'GET' ||
-            (req.body.firstname == '') ||
-            (req.body.lastname == '') ||
-            (req.body.class == '') ||
-            (req.body.studentid == '')) 
+        if(req.method == 'GET') 
             return next()
         
-        if (typeof res.locals.student === 'undefined') 
+        if (typeof res.locals.student === 'undefined')
             res.locals.student = new StudentModel()
-        
+
         res.locals.student.firstname = req.body.firstname
         res.locals.student.lastname = req.body.lastname
         res.locals.student.address.street = req.body.street
@@ -27,6 +23,14 @@ module.exports = function(objectrepository) {
         res.locals.student.email = req.body.email
         res.locals.student.studentid = req.body.studentid
         res.locals.student.class = req.body.class
+
+        //validation
+        if(req.body.firstname == '' ||
+            req.body.lastname == '' ||
+            req.body.class == '' ||
+            req.body.studentid == '' ||
+            req.body.email == '')
+            return next()
 
         res.locals.student.save((err) => {
             if (err) {

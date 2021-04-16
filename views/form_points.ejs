@@ -1,7 +1,7 @@
 <%- include('header', {navbar: 'Class', link: '/points/' + student._id + '/'}) -%> 
         <div class="container">
             <div class="col-12 card p-5 shadow">
-                <form class="row g-3 " method="POST" <% if (typeof studentpoint === 'undefined') { %>
+                <form id="point_form" class="row g-3 " method="POST" <% if (typeof studentpoint === 'undefined') { %>
                   action="/points/<%= student._id %>/new/ "
                  <% } else { %>
                    action="/points/<%= student._id %>/edit/<%= studentpoint._id %> "
@@ -29,7 +29,7 @@
                     </div>
                     <div class="col-md-4 offset-md-4">
                       <label for="date" class="form-label">Date</label>
-                      <input type="date" class="form-control" id="date" name="date" value="<%= (typeof studentpoint === 'undefined') ? '' : studentpoint.date%>">
+                      <input type="date" class="form-control" id="date" name="date" value="<%= (typeof studentpoint === 'undefined') ? '' : `${studentpoint.date.toISOString().split('T')[0]}` %>">
                     </div>
                     <div class="col-12">
                       <label for="description" class="form-label">Description</label>
@@ -42,4 +42,4 @@
                   </form>
             </div>
         </div>
-  <%- include('footer') -%> 
+  <%- include('footer', {validation: 'point'}) -%> 

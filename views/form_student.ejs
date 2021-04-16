@@ -1,7 +1,7 @@
 <%- include('header',  {navbar: 'Class', link: '/students/'}) -%> 
         <div class="container">
             <div class="col-12 card p-5 shadow">
-                <form class="row g-3 " method="POST" <% if (typeof student === 'undefined') { %>
+                <form id="student_form" class="row g-3 " method="POST" <% if (typeof student === 'undefined') { %>
                  action="/students/new/"
                 <% } else { %>
                   action="/students/edit/<%= student._id %>/"
@@ -58,4 +58,4 @@
                   </form>
             </div>
         </div>
-  <%- include('footer') -%> 
+  <%- include('footer', {validation: 'student'}) -%> 

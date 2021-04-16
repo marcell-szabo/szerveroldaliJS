@@ -4,7 +4,7 @@ const db = require('../config/db')
 var Student = db.model('Student', {
     firstname: String,
     lastname: String,
-    studentid: Number,
+    studentid: String,
     address: {
         street: String,
         city: String,

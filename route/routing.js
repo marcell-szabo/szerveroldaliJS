@@ -9,6 +9,7 @@ const getStudentsMW = require('../middlewares/student/getStudentsMW')
 const getStudentMW = require('../middlewares/student/getStudentMW')
 const saveStudentMW = require('../middlewares/student/saveStudentMW')
 const delStudentMW = require('../middlewares/student/delStudentMW')
+const logoutMW = require('../middlewares/auth/logoutMW')
 
 const StudentModel = require('../models/student')
 const PointModel = require('../models/point')
@@ -65,6 +66,8 @@ module.exports = function(app) {
         getPointMW(objecRepository),
         delPointMW(objecRepository))
 
+    app.use('/logout/', logoutMW(objecRepository))
+    
     app.use('/',
         checkPassMW(objecRepository), 
         renderMW(objecRepository, 'index'))

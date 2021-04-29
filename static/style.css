@@ -71,6 +71,10 @@ th{
 a.modify{
     display: inline-block;
     padding-right: 1em;
+    color: #5bc0de;
+}
+a.modify :hover{
+    color: #458fa5;
 }
 a.remove{
     color:red;
@@ -95,6 +99,10 @@ a.size{
 }
 a.add-size{
     font-size: 2.5em;
+    color: #5bc0de;
+}
+a.add-size :hover {
+    color: #458fa5;
 }
 @media 
 only screen and (max-width: 760px) {
@@ -148,4 +156,13 @@ input.error:focus {
 }
 label.error{
     color: rgba(255, 0, 0, 0.6);
+}
+div.error-login{
+    border-color: rgba(255, 0, 0, 0.6);
+    border-radius: 5px;
+    background-color: red;
+    font-size: small;
+}
+span.error{
+    color: white;
 }

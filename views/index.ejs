@@ -1,7 +1,7 @@
 <%- include('header.ejs',  {navbar: 'Login', link: ''}) -%> 
     <div class="container">
-        <div class="col-12 card p-5 shadow ">
-            <form method="POST" action="/">
+        <div class="col-12 card p-1 pt-5 pb-5 p-md-5 shadow ">
+            <form method="POST" action="/"> 
                 <div class="mb-3 col-6 form-group offset-3">
                     <label for="username" class="form-label">Username</label>
                     <input type="text" class="form-control" id="username" name="username">
@@ -10,9 +10,14 @@
                     <label for="password" class="form-label">Password</label>
                     <input type="password" class="form-control" id="password" name="password">
                   </div>
+                  <% if(typeof errorlogin !== 'undefined') { %>
+                  <div class="form-group col-8 offset-2 col-lg-4 offset-lg-4 text-center p-1 error-login">
+                    <span class="error">Invalid username or password, for testing try admin/admin</span>
+                  </div>
+                  <% } %>  
                   <div class="col-12 text-center mt-3">
                     <input type="submit" class="btn btn-primary" value="Submit">
-                  </div>  
+                  </div> 
             </form>
         </div>
     </div>

@@ -9,7 +9,10 @@
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-5">
-            <div class="container-fluid ps-5">
+            <div class="container-fluid ps-5 pe-5 p-2">
               <a class="navbar-brand" href="<%= link %> "><%= navbar %> </a>
+              <% if(navbar != 'Login') { %> 
+              <a class="nav-link btn  btn-outline-info" href="/logout/">Log Out</a>
+              <% } %> 
             </div>
         </nav>

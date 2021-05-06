@@ -9,7 +9,7 @@ module.exports = function(objectrepository) {
     return function(req, res, next)  {
         StudentModel.findOne({_id: req.params.studentid}, (err, student) => {
             if(err || !student) {
-                return next(err)
+                return next(err ? err : "hiba")
             }
             res.locals.student = student
             return next()

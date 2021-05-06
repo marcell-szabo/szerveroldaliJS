@@ -4,6 +4,7 @@
   "description": "Homework for Server-side JavaScript",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "mocha"
   },
   "author": "Marcell Szabo",

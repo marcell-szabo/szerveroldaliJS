@@ -10,7 +10,7 @@ module.exports = function(objectrepository) {
     return function(req, res, next)  {
         PointModel.findOne({_id: req.params.pointid, _gradeof: req.params.studentid}, (err, point) => {
             if(err || !point) 
-                next(err)
+                next(err ? err : 'hiba')
             res.locals.studentpoint = point
             return next()
         })

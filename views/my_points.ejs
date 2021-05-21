@@ -1,4 +1,4 @@
-<%- include('header', {navbar: 'Class', link: '/students/'}) -%> 
+<%- include('header', {navbar: 'Me', link: '/mypoints/'}) -%> 
         <div class="container">
             <div class="row">   
                 <div class="col-10 offset-1 col-md-12 offset-md-0 card p-5 shadow mt-3">
@@ -27,14 +27,10 @@
                                 <td ><%= onePoint.points %> </td>
                                 <td ><%= onePoint.date.toDateString() %> </td>
                                 <td><%= onePoint.description %> </td>
-                                <td class="td-narrow"><a class="modify" href="/points/<%= student._id %>/edit/<%= onePoint._id %>/  "><i class="fas fa-pencil-alt"></i></a><a class="remove"  href="/points/<%= student._id %>/del/<%= onePoint._id %>/"><i class="fas fa-minus-circle"></i></a> </td>
                             </tr>
                         <% }) %>
                         </table>
                 </div>
-            </div>
-            <div class="col-12 text-center mt-4">
-                <a class="add-size" href="/points/<%= student._id %>/new/ "><i class="fas fa-plus-square fa-lg"></i></a>
             </div>
         </div>
 <%- include('footer') -%> 

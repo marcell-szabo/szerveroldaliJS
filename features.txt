@@ -1,0 +1,7 @@
+torles dialogusablak
+osztalyok
+osszes diak jegy
+idoszakok
+jelszo csere
+kereses gyorsitas (user kereses)
+unique studentid

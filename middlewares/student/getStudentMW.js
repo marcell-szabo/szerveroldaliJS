@@ -3,11 +3,12 @@
  */
 const requireOption = require('../requireOption')
 
-module.exports = function(objectrepository) {
+module.exports = function(objectrepository, session = false) {
     const StudentModel = requireOption(objectrepository, 'StudentModel')
 
     return function(req, res, next)  {
-        StudentModel.findOne({_id: req.params.studentid}, (err, student) => {
+        const queryvalue = session ? req.session.userid : req.params.studentid
+        StudentModel.findOne({_id: queryvalue}, (err, student) => {
             if(err || !student) {
                 return next(err ? err : "hiba")
             }

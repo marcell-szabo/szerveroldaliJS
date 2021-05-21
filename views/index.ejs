@@ -1,24 +1,12 @@
 <%- include('header.ejs',  {navbar: 'Login', link: ''}) -%> 
-    <div class="container">
-        <div class="col-12 card p-1 pt-5 pb-5 p-md-5 shadow ">
-            <form method="POST" action="/"> 
-                <div class="mb-3 col-6 form-group offset-3">
-                    <label for="username" class="form-label">Username</label>
-                    <input type="text" class="form-control" id="username" name="username">
-                  </div>
-                  <div class="mb-3 col-6 offset-3">
-                    <label for="password" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="password" name="password">
-                  </div>
-                  <% if(typeof errorlogin !== 'undefined') { %>
-                  <div class="form-group col-8 offset-2 col-lg-4 offset-lg-4 text-center p-1 error-login">
-                    <span class="error">Invalid username or password, for testing try admin/admin</span>
-                  </div>
-                  <% } %>  
-                  <div class="col-12 text-center mt-3">
-                    <input type="submit" class="btn btn-primary" value="Submit">
-                  </div> 
-            </form>
+    <div class="container mt-5">
+        <div id="card" class="offset-2 col-8 card p-1 pt-5 pb-5 p-md-5 shadow d-flex align-items-center">
+            <div class="mt-5"> 
+              <a id="teacher_login" href="/teacherlogin/" class="btn btn-secondary btn-custom-lg"><i class="fas fa-chalkboard-teacher"></i><span class="space">Teacher Sign in</span></a>
+            </div>
+            <div class="mt-5 mb-5"> 
+              <a id="student_login" href="/studentlogin/" class="btn btn-secondary btn-custom-lg"><i class="fas fa-user-graduate"></i><span class="space">Student Sign in</span></a>
+            </div>
         </div>
     </div>
 <%- include('footer.ejs') -%> 

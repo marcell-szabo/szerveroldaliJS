@@ -23,6 +23,7 @@ module.exports = function(objectrepository) {
         res.locals.student.email = req.body.email
         res.locals.student.studentid = req.body.studentid
         res.locals.student.class = req.body.class
+        res.locals.student.password = req.body.firstname.charAt(0) + req.body.lastname.charAt(0) + req.body.studentid
 
         //validation
         if(req.body.firstname == '' ||

@@ -11,8 +11,8 @@
                             <div class=" bd-highlight text-center"><span>Class:</span><span class="space"><%= oneStudent.class %></span></div>
                             <div class=" bd-highlight text-center"><span>Points:</span><span class="space"><%= oneStudent.pointssum %> </span></div>
                             <div class="mt-3">
-                                <a class="btn btn-outline-info overlink" href="/students/edit/<%= oneStudent._id %>/" role="button"><i class="bi bi-pencil-square"></i></a>
-                                <a class="btn btn-outline-danger overlink" href="/students/del/<%= oneStudent._id %>/" role="button"><i class="bi bi-trash-fill"></i></i></a>
+                                <a class="btn btn-outline-info overlink" href="/students/edit/<%= oneStudent._id %>/" role="button"><i class="fas fa-pencil-alt"></i></a>
+                                <a class="btn btn-outline-danger overlink" href="/students/del/<%= oneStudent._id %>/" role="button"><i class="fas fa-trash"></i></a>
                             </div>
                         </div>
                     </div>                    
@@ -20,7 +20,7 @@
             <% }) %>
                 <div class="col-sm-6 offset-sm-0 col-md-4 col-lg-3 col-10 offset-1 mt-3 minheight">
                     <div class="card text-center p-4 h-100 align-items-center centering shadow">
-                        <a class="btn btn-outline-dark btn-lg centered" href="/students/new/" role="button"><i class="bi bi-person-plus-fill"></i></a>
+                        <a class="btn btn-outline-dark btn-lg centered" href="/students/new/" role="button"><i class="fas fa-plus fa-lg"></i></a>
                     </div>
                 </div>
             </div>

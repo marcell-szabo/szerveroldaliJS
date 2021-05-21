@@ -6,7 +6,9 @@ module.exports = function(objectrepository) {
     return function(req, res, next)  {
         if(typeof req.session.isloggedin === 'undefined' || req.session.isloggedin !== true)
             res.redirect('/')
-        else
+        else if(!req.session.teacher && req.originalUrl !== '/mypoints/') {
+            res.redirect('/mypoints/')
+        } else
             return next()
     }
 }

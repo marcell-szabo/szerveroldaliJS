@@ -104,47 +104,6 @@ a.add-size{
 a.add-size :hover {
     color: #458fa5;
 }
-@media 
-only screen and (max-width: 760px) {
-
-	/* Force table to not be like tables anymore */
-	table, thead, tbody, th, td, tr { 
-		display: block; 
-	}
-	
-	/* Hide table headers (but not display: none;, for accessibility) */
-	thead tr { 
-		display: none;
-	}
-	
-	tr { border: 1px solid #ccc; }
-	
-	td { 
-		/* Behave  like a "row" */
-		border: none;
-		border-bottom: 1px solid #eee; 
-        display: flex;
-	}
-	
-	td:before { 
-        text-align: start;
-		width: 45%; 
-		padding-right: 10px; 
-		white-space: nowrap;
-	}
-	td.td-narrow{
-        padding-left: 50%;
-       align-items: center;
-        justify-content: center;
-    }
-	/*
-	Label the data
-	*/
-	td:nth-of-type(1):before { content: "Task"; font-weight: bold;}
-	td:nth-of-type(2):before { content: "Point"; font-weight: bold;}
-	td:nth-of-type(3):before { content: "Date"; font-weight: bold;}
-	td:nth-of-type(4):before { content: "Description"; font-weight: bold;}
-}
 
 input.error {
   border-color: #FF0000;
@@ -165,4 +124,8 @@ div.error-login{
 }
 span.error{
     color: white;
+}
+a.btn-custom-lg {
+    padding: 1.5rem 2rem;
+    font-size: 1.4rem;
 }

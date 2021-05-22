@@ -67,5 +67,9 @@ $(document).ready(function () {
     });
 
     $('#sidenav').hover(openNav, closeNav)
-    $('#hamburgerbutton').click(openNav)
+    $('#hamburgerbutton').click(function(){
+        if($(window).width() < 767)
+            return openNav(null)
+        return (this.tog = !this.tog) ? openNav(null) : closeNav(null);
+    })
 });

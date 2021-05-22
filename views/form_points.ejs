@@ -1,4 +1,4 @@
-<%- include('header', {navbar: 'Class', link: '/points/' + student._id + '/'}) -%> 
+<%- include('header', {navbar: 'Class', hamburger: false, link: '/points/' + student._id + '/'}) -%> 
         <div class="container">
             <div class="col-12 card p-5 shadow">
                 <form id="point_form" class="row g-3 " method="POST" <% if (typeof studentpoint === 'undefined') { %>

@@ -5,3 +5,4 @@ idoszakok
 jelszo csere
 kereses gyorsitas (user kereses)
 unique studentid
+validacio adatbazis, szerver oldal

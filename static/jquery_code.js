@@ -15,6 +15,30 @@ function sendAJAX(element, targetURL) {
             })
 }
 
+function openNav(e) {
+    console.log('kaki')
+    if($(window).width() < 767) {
+        $('#sidenav').prepend("<a href=\"javascript:void(0)\" class=\"closebtn\" onclick=\"closeNav(null)\">x</a>")
+        $('#sidenav').css('width', '100%')
+        $('#sidenav').css('text-align', 'center')
+    } else {
+        const width = '150px'
+        $('#sidenav').css('width', width)
+        $('.transition').css('margin-left', width)
+        $('footer').css('width', `calc(100% - ${width})`)
+    }
+}
+function closeNav(e) {
+    if($(window).width() < 767) {
+        setTimeout(() => { $('#sidenav a:first-child').remove()}, 500)
+        $('#sidenav').css('width', '1px')
+        $('#sidenav').css('text-align', 'left')
+    } else {
+        $('#sidenav').css('width', '1px')
+        $('.transition').css('margin-left', '0px')
+        $('footer').css('width', '100%')
+    }
+}
 $(document).ready(function () {
 
     $('#student_form').validate({ // initialize the plugin
@@ -41,4 +65,7 @@ $(document).ready(function () {
             form.submit()
         }
     });
+
+    $('#sidenav').hover(openNav, closeNav)
+    $('#hamburgerbutton').click(openNav)
 });

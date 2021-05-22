@@ -9,8 +9,11 @@
         <link rel="stylesheet" href="/media.css" type="text/css">
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-5">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-5 transition">
             <div class="container-fluid ps-5 pe-5 p-2">
+              <% if (hamburger) { %>
+                <a id="hamburgerbutton" class="navbar-brand"><i class="fas fa-bars"></i></a>
+              <% } %>
               <a class="navbar-brand" href="<%= link %> "><%= navbar %> </a>
               <% if(navbar != 'Login') { %> 
               <a class="nav-link btn  btn-outline-info" href="/logout/">Log Out</a>

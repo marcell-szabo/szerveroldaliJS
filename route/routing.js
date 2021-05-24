@@ -1,8 +1,8 @@
 const authMW = require('../middlewares/auth/authMW')
-const checkPassMW = require('../middlewares/auth/checkPassMW')
 const checkTeacherPassMW = require('../middlewares/auth/checkTeacherPassMW')
 const checkStudentPassMW = require('../middlewares/auth/checkStudentPassMW')
 const renderMW = require('../middlewares/renderMW')
+const renderAJAXMW = require('../middlewares/renderAJAXMW')
 const getPointsMW = require('../middlewares/points/getPointsMW')
 const getPointMW = require('../middlewares/points/getPointMW')
 const savePointMW = require('../middlewares/points/savePointMW')
@@ -12,16 +12,20 @@ const getStudentMW = require('../middlewares/student/getStudentMW')
 const saveStudentMW = require('../middlewares/student/saveStudentMW')
 const delStudentMW = require('../middlewares/student/delStudentMW')
 const logoutMW = require('../middlewares/auth/logoutMW')
+const getTeacherUserMW = require('../middlewares/teacheruser/getTeacherUserMW')
+const getMyClass = require('../middlewares/class/getMyClassMW')
 
 
 const StudentModel = require('../models/student')
 const PointModel = require('../models/point')
 const TeacherUserModel = require('../models/teacherUser')
+const ClassModel = require('../models/class')
 module.exports = function(app) {
     const objecRepository = {
         StudentModel: StudentModel,
         PointModel: PointModel,
-        TeacherUserModel: TeacherUserModel
+        TeacherUserModel: TeacherUserModel,
+        ClassModel: ClassModel
     }
 
     
@@ -43,6 +47,7 @@ module.exports = function(app) {
         
     app.get('/students/',
         authMW(objecRepository),
+        getTeacherUserMW(objecRepository),
         getStudentsMW(objecRepository),
         renderMW(objecRepository, 'class'))
 
@@ -72,11 +77,24 @@ module.exports = function(app) {
         delPointMW(objecRepository))
 
     app.use('/mypoints/', 
-            authMW(objecRepository),
-            getStudentMW(objecRepository, true),
-            getPointsMW(objecRepository),
-            renderMW(objecRepository, 'my_points')) 
-    
+        authMW(objecRepository),
+        getStudentMW(objecRepository, true),
+        getPointsMW(objecRepository),
+        renderMW(objecRepository, 'my_points'))
+
+    app.get('/myclass/',
+        authMW(objecRepository),
+        getTeacherUserMW(objecRepository),
+        getMyClass(objecRepository),
+        renderAJAXMW(objecRepository, 'myclassHEAD'),
+        renderMW(objecRepository, 'myclass'))
+
+    app.get('/myclass/edit/',
+        authMW(objecRepository),
+        getTeacherUserMW(objecRepository),
+        getMyClass(objecRepository),
+        renderAJAXMW(objecRepository, 'myclass_edit'))
+
     app.use('/logout/', logoutMW(objecRepository))
 
     app.use('/teacherlogin/',

@@ -15,7 +15,8 @@ var StudentSchema = new Schema({
     email: {type: String, required: true},
     class: {type: String, required: true},
     pointssum: {type: Number, default: 0},
-    password: {type: String,  required: true }
+    password: {type: String,  required: true },
+    _studentof: {type: Schema.Types.ObjectId, ref: 'Class'}
 })
 
 StudentSchema.pre('save', function(next) {

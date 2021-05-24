@@ -9,7 +9,7 @@ module.exports = function(objectrepository) {
     const StudentModel = requireOption(objectrepository, 'StudentModel')
 
     return function(req, res, next)  {
-        if(req.method == 'GET') 
+        if(req.method === 'GET')
             return next()
         
         if (typeof res.locals.student === 'undefined')
@@ -26,11 +26,11 @@ module.exports = function(objectrepository) {
         res.locals.student.password = typeof res.locals.student.password === 'undefined' ? req.body.firstname.charAt(0) + req.body.lastname.charAt(0) + req.body.studentid : res.locals.student.password
 
         //validation
-        if(req.body.firstname == '' ||
-            req.body.lastname == '' ||
-            req.body.class == '' ||
-            req.body.studentid == '' ||
-            req.body.email == '')
+        if(req.body.firstname === '' ||
+            req.body.lastname === '' ||
+            req.body.class === '' ||
+            req.body.studentid === '' ||
+            req.body.email === '')
             return next()
 
         res.locals.student.save((err) => {

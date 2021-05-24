@@ -17,13 +17,18 @@ body {
 .centering{
     position: relative;
 }
+.toright{
+    position: absolute;
+    top: 2em;
+    right: 2em;
+}
 .centered{
     position: absolute;
     top: 50%;
     transform: translateY(-50%)
 }
 .minheight{
-    min-height: 19em;
+    min-height: 18em;
 }
 .link{
     position: relative;
@@ -95,10 +100,9 @@ td.td-narrow{
     top: 0; 
 }
 a.size{
-    font-size: large;
+    font-size: 2.5em;
 }
 a.add-size{
-    font-size: 2.5em;
     color: #5bc0de;
 }
 a.add-size :hover {

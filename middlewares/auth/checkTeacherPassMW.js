@@ -7,7 +7,6 @@ module.exports = function(objectrepository) {
         if(req.method === 'GET') {
             return next()
         }
-
         TeacherUserModel.findOne({ username: req.body.username }, (err, user) => {
             if(err)
                 return next(err)

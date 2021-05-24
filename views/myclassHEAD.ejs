@@ -1,0 +1,16 @@
+<div class="container mb-5">
+    <div class="row">
+        <div id="myclassdiv" class="col-10 offset-1 col-md-12 offset-md-0 card p-5 shadow mt-3 mb-3 centering">
+            <a id="editmyclass" class="toright add-size" ><i  class="fas fa-pencil-alt fa-lg"></i></a>
+            <% if(typeof myclass === 'undefined') {%>
+                <h1 class="card-title">MyClass</h1>
+            <% } else { %>
+                    <h1 class="card-title"><%= myclass.name %></h1>
+                <% } %>
+            <div class="card-body p-0 pt-3 mt-2">
+                <div class="d-inline-flex bd-highlight me-5"><span>valami</span><span class="space">valami</span></div>
+            </div>
+        </div>
+    </div>
+
+</div>

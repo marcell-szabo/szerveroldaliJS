@@ -1,4 +1,16 @@
-<form id="myclassform" method="post" class="row">
-    <input type="text" class="form-control" id="classname" name="classname"
+<form id="myclassform" method="post" class="row" onsubmit="return submitmyclass(this)">
+    <input style="height: 2em; font-size: 2.5em; margin-top: -.37em"  type="text" class="form-control" id="classname" name="classname"
            value="<%= (typeof myclass === 'undefined') ? 'MyClass' : myclass.name %>">
+    <div class="col-md-6 mt-3">
+        <label for="startyear">StartYear:</label>
+        <input type="number" class="form-control" id="startyear" name="startyear" value="<%= (typeof myclass === 'undefined') ? 2020 : myclass.startyear %>">
+    </div>
+    <div class="col-md-6 mt-3">
+        <label for="startyear">Year of Graduation:</label>
+        <input type="number" class="form-control" id="finishyear" name="finishyear" value="<%= (typeof myclass === 'undefined') ? 2020 : myclass.finishyear %>">
+    </div>
+    <div class="col-12 text-center pt-3">
+        <input type="submit" class="btn btn-primary" value="Submit"/>
+        <a href="#" class="btn btn-danger">Cancel</a>
+    </div>
 </form>

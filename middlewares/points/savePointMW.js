@@ -11,7 +11,7 @@ module.exports = function(objectrepository) {
     const StudentModel = requireOption(objectrepository, 'StudentModel')
 
     return function(req, res, next)  {
-        if(req.method == 'GET' ) 
+        if(req.method === 'GET' )
             return next()
 
         if (typeof res.locals.studentpoint === 'undefined') {
@@ -27,10 +27,10 @@ module.exports = function(objectrepository) {
         res.locals.studentpoint._gradeof = res.locals.student._id
 
         //validation
-        if(req.body.task == '' ||
-            req.body.point == '' ||
-            req.body.date == ''  ||
-            req.body.description == '')
+        if(req.body.task === '' ||
+            req.body.point === '' ||
+            req.body.date === ''  ||
+            req.body.description === '')
             return next()
         
         res.locals.studentpoint.save((err) => {

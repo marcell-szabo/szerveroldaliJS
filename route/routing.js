@@ -14,6 +14,7 @@ const delStudentMW = require('../middlewares/student/delStudentMW')
 const logoutMW = require('../middlewares/auth/logoutMW')
 const getTeacherUserMW = require('../middlewares/teacheruser/getTeacherUserMW')
 const getMyClass = require('../middlewares/class/getMyClassMW')
+const saveMyClass = require('../middlewares/class/saveMyClassMW')
 
 
 const StudentModel = require('../models/student')
@@ -28,14 +29,17 @@ module.exports = function(app) {
         ClassModel: ClassModel
     }
 
-    
     app.use('/students/new/',
         authMW(objecRepository),
+        getTeacherUserMW(objecRepository),
+        getMyClass(objecRepository),
         saveStudentMW(objecRepository),
         renderMW(objecRepository, 'form_student'))
         
     app.use('/students/edit/:studentid/',
         authMW(objecRepository),
+        getTeacherUserMW(objecRepository),
+        getMyClass(objecRepository),
         getStudentMW(objecRepository),
         saveStudentMW(objecRepository),
         renderMW(objecRepository, 'form_student'))
@@ -48,7 +52,6 @@ module.exports = function(app) {
     app.get('/students/',
         authMW(objecRepository),
         getTeacherUserMW(objecRepository),
-        getStudentsMW(objecRepository),
         renderMW(objecRepository, 'class'))
 
     app.get('/points/:studentid/',
@@ -82,18 +85,26 @@ module.exports = function(app) {
         getPointsMW(objecRepository),
         renderMW(objecRepository, 'my_points'))
 
-    app.get('/myclass/',
-        authMW(objecRepository),
-        getTeacherUserMW(objecRepository),
-        getMyClass(objecRepository),
-        renderAJAXMW(objecRepository, 'myclassHEAD'),
-        renderMW(objecRepository, 'myclass'))
-
     app.get('/myclass/edit/',
         authMW(objecRepository),
         getTeacherUserMW(objecRepository),
         getMyClass(objecRepository),
         renderAJAXMW(objecRepository, 'myclass_edit'))
+
+    app.post('/myclass/save/',
+        authMW(objecRepository),
+        getTeacherUserMW(objecRepository),
+        getMyClass(objecRepository),
+        saveMyClass(objecRepository),
+        renderAJAXMW(objecRepository, 'myclassHEAD'))
+
+    app.get('/myclass/',
+        authMW(objecRepository),
+        getTeacherUserMW(objecRepository),
+        getMyClass(objecRepository),
+        getStudentsMW(objecRepository),
+        renderAJAXMW(objecRepository, 'myclassBODY'),
+        renderMW(objecRepository, 'myclass'))
 
     app.use('/logout/', logoutMW(objecRepository))
 

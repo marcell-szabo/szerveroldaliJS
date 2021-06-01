@@ -18,7 +18,7 @@ module.exports = function(objectrepository) {
             PointModel.deleteMany({_gradeof: res.locals.student._id}, (err, delres) => {
                 if(err)
                     next(err)
-                    return res.redirect('/students/')
+                    return res.redirect('/myclass/')
             })
         })
     }

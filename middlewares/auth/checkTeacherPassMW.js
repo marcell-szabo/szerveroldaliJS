@@ -1,23 +1,23 @@
 const requireOption = require('../requireOption')
 
-module.exports = function(objectrepository) {
+module.exports = function (objectrepository) {
     const TeacherUserModel = requireOption(objectrepository, 'TeacherUserModel')
-    return function(req, res, next)  {
+    return function (req, res, next) {
         res.locals.who = 'teacher'
-        if(req.method === 'GET') {
+        if (req.method === 'GET') {
             return next()
         }
-        TeacherUserModel.findOne({ username: req.body.username }, (err, user) => {
-            if(err)
+        TeacherUserModel.findOne({username: req.body.username}, (err, user) => {
+            if (err)
                 return next(err)
-            if(user ==  null) {
+            if (user == null) {
                 res.locals.errorlogin = 'nincs ilyen felhasznalo'
                 return next()
             }
             user.comparePassword(req.body.password, (err, isMatch) => {
-                if(err)
+                if (err)
                     return next(err)
-                if(!isMatch) {
+                if (!isMatch) {
                     res.locals.errorlogin = 'hibas jelszo'
                     return next()
                 } else {

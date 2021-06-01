@@ -24,6 +24,7 @@ module.exports = function(objectrepository) {
         res.locals.student.studentid = req.body.studentid
         res.locals.student.class = req.body.class
         res.locals.student.password = typeof res.locals.student.password === 'undefined' ? req.body.firstname.charAt(0) + req.body.lastname.charAt(0) + req.body.studentid : res.locals.student.password
+        res.locals.student._studentof = res.locals.myclass._id
 
         //validation
         if(req.body.firstname === '' ||
@@ -37,7 +38,7 @@ module.exports = function(objectrepository) {
             if (err) {
                 return next(err)
             }
-            res.redirect('/students/')
+            res.redirect('/myclass/')
         })       
     }
 }

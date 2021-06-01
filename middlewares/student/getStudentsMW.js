@@ -8,7 +8,7 @@ module.exports = function(objectrepository) {
     const StudentModel = requireOption(objectrepository, 'StudentModel')
 
     return function(req, res, next)  {
-        StudentModel.find({}, (err, students) => {
+        StudentModel.find({ _studentof: res.locals.myclass._id }, (err, students) => {
             if (err)
                 return next(err)
             

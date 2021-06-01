@@ -28,7 +28,7 @@ body {
     transform: translateY(-50%)
 }
 .minheight{
-    min-height: 18em;
+    min-height: 16em;
 }
 .link{
     position: relative;
@@ -169,4 +169,7 @@ a.btn-custom-lg {
  
 .transition {
     transition: margin-left .5s, width .5s;
+}
+#myclassform input{
+    border-width: 0 0 1px 0;
 }

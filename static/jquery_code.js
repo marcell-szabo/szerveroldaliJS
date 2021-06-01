@@ -52,6 +52,23 @@ function closeNav(e) {
     }
 }
 
+function editmyclass() {
+    sendAJAX(this, '/myclass/edit/', '#myclassdiv')
+}
+function submitmyclass(form) {
+    event.preventDefault()
+    $.ajax({
+        type: "POST",
+        url: '/myclass/save/',
+        data: $(form).serialize(),
+        success: function (result) {
+            $('#myclassdiv').html(result)
+        },
+        error: function (result) {
+            $("html").html('error')
+        }
+    })
+}
 $(document).ready(function () {
 
     $('#student_form').validate({ // initialize the plugin
@@ -89,12 +106,8 @@ $(document).ready(function () {
     })
     $(window).bind("popstate", function(e) {
         var state = e.originalEvent.state;
-        console.log('lokuki')
         location.reload()
     });
-    $('#editmyclass').click(function (e){
-        e.preventDefault()
-        sendAJAX(this, '/myclass/edit/', '#myclassdiv')
-    })
+
 
 });
